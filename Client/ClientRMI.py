@@ -27,9 +27,11 @@ client = ClientRMI()
 
 while True:
     print("Escriba 1 para acceder a la calculadora")
+    print("Escriba 2 para acceder a la secuencia de Fibonacci")
     print("Escriba 3 para sincronizar relojes con algoritmo de Cristian")
     print("Escriba cualquier otra cosa para salir")
     option = input()
+    #Calculadora
     if option == "1":
         print()
         print("Escriba 1 para sumar")
@@ -73,8 +75,18 @@ while True:
             
         print()
     
+    #Secuencia de fibonacci
+    elif option == "2":
+        print()
+        print("Escriba el numero de la secuencia de Fibonacci que desea calcular")
+        n = input()
+        print()
+        print("El " + n + "-esimo termino de la secuencia de Fibonacci es: " + str(client.ServerRMI.Fibonacci(int(n))))
+        print()
+    
+    #Algoritmo de Cristian
     elif option == "3":
         client.CristianAlgorithm()
-        print("\nAlgoritmo de Cristian finalizado\n")
+        print("\nAlgoritmo de Cristian finalizado (ver carpeta logs)\n")
     else:
         break

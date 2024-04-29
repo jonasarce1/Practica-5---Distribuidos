@@ -10,7 +10,7 @@ import math
 #Usare la biblioteca Pyro4 (Python Remote Objects) para crear un servidor RMI
 #Y hare la posibilidad de sincronizar relojes entre servidor y cliente mediante algoritmo cristian y berkeley
 
-@Pyro4.expose
+@Pyro4.expose #Expose para exponer los metodos y poder ser llamados por los clientes
 class ServerRMI(object):
     ######### Metodos para la calculadora #########
     
@@ -31,6 +31,16 @@ class ServerRMI(object):
     
     def RaizCuadrada(self, num1):
         return str(math.sqrt(num1))
+    
+    ######### Metodos para la Fibonacci #########
+    
+    def Fibonacci(self, n): #Metodo recursivo para calcular el n-esimo termino de la secuencia de Fibonacci
+        if n == 0:
+            return 0
+        elif n == 1:
+            return 1
+        else:
+            return self.Fibonacci(n-1) + self.Fibonacci(n-2)
         
     ######### Metodos para el algoritmo de Cristian #########
     
