@@ -6,12 +6,23 @@ from dateutil import parser
 from timeit import default_timer as timer
 import logging
 import math
+from cryptography.fernet import Fernet
 
 #Usare la biblioteca Pyro4 (Python Remote Objects) para crear un servidor RMI
 #Y hare la posibilidad de sincronizar relojes entre servidor y cliente mediante algoritmo cristian y berkeley
 
 @Pyro4.expose #Expose para exponer los metodos y poder ser llamados por los clientes
 class ServerRMI(object):
+    
+    #Funcion para configurar el logging en la carpeta logs
+    def CreateLogDirectory(self):
+        current_directory = os.path.dirname(os.path.abspath(__file__))
+        parent_directory = os.path.dirname(current_directory)
+        log_folder = "logs"
+        log_path = os.path.join(parent_directory, log_folder)
+        os.makedirs(log_path, exist_ok=True)
+        return log_path
+    
     ######### Metodos para la calculadora #########
     
     def Sumar(self, num1, num2):
@@ -42,6 +53,68 @@ class ServerRMI(object):
         else:
             return self.Fibonacci(n-1) + self.Fibonacci(n-2)
         
+    ######### Metodos para encriptacion de mensajes (AES) #########
+    
+    def GenerateKey(self):
+        log_path = self.CreateLogDirectory()
+        log_file = log_path + "/keys.log"
+        logging.basicConfig(filename=log_file, level=logging.INFO)
+        
+        key = Fernet.generate_key()
+        
+        #Si la llave generada ya esta en el log de keys genero otra llave
+        while key in logging.Logger.manager.loggerDict:
+            key = Fernet.generate_key()
+        
+        key_str = key.decode()
+        
+        #Guardo la llave en el log de keys
+        logging.info(key_str)
+        
+        return str(key_str)
+    
+    def EncryptMessage(self, message, key):
+        #Configuro el logging para guardar los mensajes encriptados
+        log_path = self.CreateLogDirectory()
+        log_file_keys = log_path + "/keys.log"
+        
+        #Compruebo si la clave ya esta en el log de keys si no esta indico error
+        
+        with open(log_file_keys, "r") as file:
+            lines = file.readlines()
+            for line in lines:
+                if key in line:
+                    break
+            else:
+                return "Error: la clave no es valida, no se encuentra en el log de keys"
+        
+        f = Fernet(key)
+        encryptedMessage = f.encrypt(message.encode()).decode() #Hay que "decodificar" (que no sea diccionario) el mensaje encriptado para que sea legible
+        
+        #Guardo el mensaje encriptado en el log
+        log_path = self.CreateLogDirectory()
+        log_file_encrypted = log_path + "/encryptedMessages.log"
+        
+        #para asegurar que se escriebe en el archivo encryptedMessages.log y no en keys.log se abre el archivo en modo append
+        with open(log_file_encrypted, "a") as file:
+            file.write(encryptedMessage + "\n")
+        
+        return encryptedMessage
+    
+    def DecryptMessage(self, encryptedMessage, key):
+        #Paso la llave y el mensaje encriptado a bytes
+        key = key.encode()
+        encryptedMessage = encryptedMessage.encode()
+        
+        f = Fernet(key)
+
+        try:
+            decryptedMessage = f.decrypt(encryptedMessage).decode()
+            
+            return decryptedMessage
+        except Exception as e:
+            raise Exception("Error: No se puede desencriptar el mensaje, mensaje o clave incorrectos + " + str(e))
+        
     ######### Metodos para el algoritmo de Cristian #########
     
     def GetServerTime(self):
@@ -49,25 +122,10 @@ class ServerRMI(object):
    
     def CristianAlgorithm(self, clientTimeSend, clientTimeReceive, serverTime):
         #Se configura el logging
-        #Se obtiene el directorio actual
-        current_directory = os.path.dirname(os.path.abspath(__file__))
-
-        #Se obtiene el directorio superior
-        parent_directory = os.path.dirname(current_directory)
-
-        #Se crea la carpeta de logs
-        log_folder = "logs"
-
-        #Se crea la ruta de la carpeta de logs
-        log_path = os.path.join(parent_directory, log_folder)
-
-        #Se crea la carpeta de logs si no existe
-        os.makedirs(log_path, exist_ok=True)
-        
-        #Se crea el archivo cristian.log
+        log_path = self.CreateLogDirectory()
         log_file = log_path + "/cristian.log"
         
-        #Se termina de configurar el logging
+        #Se termina de configurar el logging, si no existe el archivo se crea
         logging.basicConfig(filename=log_file, level=logging.INFO)
         
         #Se guarda la hora actual

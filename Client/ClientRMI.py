@@ -28,7 +28,8 @@ client = ClientRMI()
 while True:
     print("Escriba 1 para acceder a la calculadora")
     print("Escriba 2 para acceder a la secuencia de Fibonacci")
-    print("Escriba 3 para sincronizar relojes con algoritmo de Cristian")
+    print("Escriba 3 para acceder a la encriptacion y desencriptacion de mensajes")
+    print("Escriba 4 para sincronizar relojes con algoritmo de Cristian")
     print("Escriba cualquier otra cosa para salir")
     option = input()
     #Calculadora
@@ -83,9 +84,41 @@ while True:
         print()
         print("El " + n + "-esimo termino de la secuencia de Fibonacci es: " + str(client.ServerRMI.Fibonacci(int(n))))
         print()
+        
+    #Encriptacion y desencriptacion de mensajes
+    elif option == "3":
+        print()
+        print("Escriba 1 para generar una llave")
+        print("Escriba 2 para encriptar un mensaje")
+        print("Escriba 3 para desencriptar un mensaje")
+        operation = input()
+        print()
+        
+        #Generar llave
+        if operation == "1":
+            print("La llave generada es: " + client.ServerRMI.GenerateKey())
+        #Encriptar mensaje
+        elif operation == "2":
+            print("Escriba el mensaje")
+            message = input()
+            print("Escriba la llave")
+            key = input()
+            print("\nEl mensaje encriptado es: " + client.ServerRMI.EncryptMessage(message, key))
+        elif operation == "3":
+            print("Escriba el mensaje encriptado")
+            message = input()
+            print("Escriba la llave")
+            key = input()
+            try:
+                decryptedMessage = client.ServerRMI.DecryptMessage(message, key)
+                print("\nEl mensaje desencriptado es: " + decryptedMessage)
+            except Exception as e:
+                print("\n" + str(e))
+            
+        print()
     
     #Algoritmo de Cristian
-    elif option == "3":
+    elif option == "4":
         client.CristianAlgorithm()
         print("\nAlgoritmo de Cristian finalizado (ver carpeta logs)\n")
     else:

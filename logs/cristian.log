@@ -1,42 +1,14 @@
-INFO:root:Hora del cliente (Envio de mensaje): 10:50:54.511986
-INFO:root:Hora del servidor: 10:50:54.512366
-INFO:root:Hora del cliente (Recepcion de mensaje): 10:50:54.512547
-INFO:root:Latencia: 0:00:00.000561
-INFO:root:Hora sincronizada: 10:50:54.512646
-INFO:root:Error de sincronizacion: 0:00:00.000174
+INFO:root:Hora del cliente (Envio de mensaje): 14:10:21.252281
+INFO:root:Hora del servidor: 14:10:21.258156
+INFO:root:Hora del cliente (Recepcion de mensaje): 14:10:21.258592
+INFO:root:Latencia: 0:00:00.006311
+INFO:root:Hora sincronizada: 14:10:21.261312
+INFO:root:Error de sincronizacion: 0:00:00.001972
 INFO:root:-------------------------------------------------
-INFO:root:Hora del cliente (Envio de mensaje): 10:50:55.317981
-INFO:root:Hora del servidor: 10:50:55.318383
-INFO:root:Hora del cliente (Recepcion de mensaje): 10:50:55.318668
+INFO:root:Hora del cliente (Envio de mensaje): 16:12:07.984095
+INFO:root:Hora del servidor: 16:12:07.984543
+INFO:root:Hora del cliente (Recepcion de mensaje): 16:12:07.984782
 INFO:root:Latencia: 0:00:00.000687
-INFO:root:Hora sincronizada: 10:50:55.318727
-INFO:root:Error de sincronizacion: 0:00:00.000482
-INFO:root:-------------------------------------------------
-INFO:root:Hora del cliente (Envio de mensaje): 10:50:56.393005
-INFO:root:Hora del servidor: 10:50:56.393443
-INFO:root:Hora del cliente (Recepcion de mensaje): 10:50:56.393641
-INFO:root:Latencia: 0:00:00.000636
-INFO:root:Hora sincronizada: 10:50:56.393761
-INFO:root:Error de sincronizacion: 0:00:00.000150
-INFO:root:-------------------------------------------------
-INFO:root:Hora del cliente (Envio de mensaje): 10:51:43.690207
-INFO:root:Hora del servidor: 10:51:43.694936
-INFO:root:Hora del cliente (Recepcion de mensaje): 10:51:43.695111
-INFO:root:Latencia: 0:00:00.004904
-INFO:root:Hora sincronizada: 10:51:43.697388
-INFO:root:Error de sincronizacion: 0:00:00.001880
-INFO:root:-------------------------------------------------
-INFO:root:Hora del cliente (Envio de mensaje): 10:53:03.014324
-INFO:root:Hora del servidor: 10:53:03.020148
-INFO:root:Hora del cliente (Recepcion de mensaje): 10:53:03.020374
-INFO:root:Latencia: 0:00:00.006050
-INFO:root:Hora sincronizada: 10:53:03.023173
-INFO:root:Error de sincronizacion: 0:00:00.002256
-INFO:root:-------------------------------------------------
-INFO:root:Hora del cliente (Envio de mensaje): 11:09:34.871537
-INFO:root:Hora del servidor: 11:09:34.877462
-INFO:root:Hora del cliente (Recepcion de mensaje): 11:09:34.877665
-INFO:root:Latencia: 0:00:00.006128
-INFO:root:Hora sincronizada: 11:09:34.880526
-INFO:root:Error de sincronizacion: 0:00:00.002424
+INFO:root:Hora sincronizada: 16:12:07.984887
+INFO:root:Error de sincronizacion: 0:00:00.000340
 INFO:root:-------------------------------------------------
