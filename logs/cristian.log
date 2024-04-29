@@ -33,3 +33,10 @@ INFO:root:Latencia: 0:00:00.006050
 INFO:root:Hora sincronizada: 10:53:03.023173
 INFO:root:Error de sincronizacion: 0:00:00.002256
 INFO:root:-------------------------------------------------
+INFO:root:Hora del cliente (Envio de mensaje): 11:09:34.871537
+INFO:root:Hora del servidor: 11:09:34.877462
+INFO:root:Hora del cliente (Recepcion de mensaje): 11:09:34.877665
+INFO:root:Latencia: 0:00:00.006128
+INFO:root:Hora sincronizada: 11:09:34.880526
+INFO:root:Error de sincronizacion: 0:00:00.002424
+INFO:root:-------------------------------------------------

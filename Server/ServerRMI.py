@@ -5,12 +5,33 @@ import datetime
 from dateutil import parser
 from timeit import default_timer as timer
 import logging
+import math
 
 #Usare la biblioteca Pyro4 (Python Remote Objects) para crear un servidor RMI
 #Y hare la posibilidad de sincronizar relojes entre servidor y cliente mediante algoritmo cristian y berkeley
 
 @Pyro4.expose
 class ServerRMI(object):
+    ######### Metodos para la calculadora #########
+    
+    def Sumar(self, num1, num2):
+        return str(num1 + num2)
+    
+    def Restar(self, num1, num2):
+        return str(num1 - num2)
+    
+    def Multiplicar(self, num1, num2):
+        return str(num1 * num2)
+    
+    def Dividir(self, num1, num2):
+        return str(num1 / num2)
+    
+    def Potencia(self, num1, num2):
+        return str(math.pow(num1, num2))
+    
+    def RaizCuadrada(self, num1):
+        return str(math.sqrt(num1))
+        
     ######### Metodos para el algoritmo de Cristian #########
     
     def GetServerTime(self):
